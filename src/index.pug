@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(http-equiv="Content-Type" charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="description" content="this is a profile dashboard")
+        meta(name="keywords" content="dashboard, html, css")
+        meta(name="author" content="Abdelmonaem Shahat")
+        link(rel="shortcut icon", href="./images/dashboard.svg")
+        // style
+        link(rel="stylesheet", href="./style.scss")
+        title Dashboard
+    body
+        .dashboard
+            // aside begin
+            aside.dashboard__sidebar.sidebar
+                a.sidebar__link.link
+                    img(class="link__icon" src="./images/home.svg")
+                    span.link__title Dashboard
+            // aside end
+            // main begin
+            main.dashboard__main
+                // achievement section begin
+                section.achievement
+                    h1.achievement__title Congratulations John!
+                    h2.achievement__subtitle Best seller of the month
+                    .achievement__body
+                        .achievement__description
+                            h2.achievement__price $89k
+                            p.achievement__content You have done 57.6% 
+                            p.achievement__content more sales today.
+                            button.btn.achievement__btn.btn View Sales
+                        .achievement__img
+                            img(src="./images/achievement.png" title="achievement img")
+                // achievement section end
+                // pending request section begin
+                section.pending-request.request
+                    h2.request__title Your Pending Requests
+                    h3.request__subtitle Medical Report for Alhabib Hospital
+                    h4.request__submit 
+                        span.thin Submitted:
+                        strong.submit Two days ago
+                    h4.request__status
+                        span.thin Status:
+                        strong.status.status--green Pending
+                    h3.request__subtitle Purchase new printer
+                    h4.request__submit
+                        span.thin Submitted:
+                        strong.submit One week ago
+                    h4.request__status
+                        span.thin Status:
+                        strong.status.status--green Approved
+                // pending request section end
+                // new staff section
+                section.notifications
+                    .new
+                        .new__product.product
+                            .badge.badge--med
+                            h3.title New Product
+                            h3.count 1.2k
+                        .new__user.user
+                            .badge.badge--med
+                            h3.title New User
+                            h3.count 45.6k
+                    .chart
+                        .chart__heading.heading
+                            h3.heading__title Revenue Growth
+                            h4.heading__subtitle $25,980
+                        .chart__img
+                            img(src="./images/chart.svg" title="svg chart")
+                        .chart__numbers
+                            -for(let i = 0;i <= 2;i+=0.5)
+                                -let broken = false
+                                -if(i === 0.5)
+                                    -broken = true
+                                -if(!broken)
+                                    span.number= i*10
+                // new staff section end
+                // summary section
+                section.summary
+                    .summary__history.history
+                        .history__heading.heading
+                            h2.heading__title Order Summary
+                            .heading__actions.actions
+                                button.actions__btn.btn.btn--off Month
+                                button.actions__btn.btn.btn--on Week
+                        .history__chart.chart
+                            img(src="./images/Chart.png" alt="chart image")
+                        .chart__chars
+                            each val in ['M', 'T', 'W', 'T', 'F', 'S','S']
+                                span.char= val
+                    .summary__sales.sales
+                        h2.sales__heading Sales History
+                        ul.sales__info
+                            - let times = ['30min ago', '2hour ago', '1day ago']
+                            -let items = ['Headphone', 'iPhone', 'Macbook']
+                            -let prices = ['+$150.70', '+$590', '+$1.2k']
+                            - for(let i = 0;i < times.length;i++)
+                                li.info
+                                    h2.info__items
+                                        span.item= items[i]
+                                        span.time= times[i]
+                                    h2.info__price= prices[i]
+                        .sales__total.total
+                            h2.total__title Total sales
+                            h3.total__number $82,950.96
+                            .total__slider
+                // summary section end
+                // updates section
+                section.updates
+                    .updates__heading.heading
+                        h2.heading__title Latest Updates
+                        select.heading__options
+                            each val in ['2019', '2020']
+                                option.option= val
+                    ul.updates__info
+                        -let titles = ['Products', 'Sales', 'Revenue', 'Cost']
+                        -let totals = [1.2, 39.4, 43.5, 'Total']
+                        -let totalNumbers= ['10.6K', '26M', '15.89M', '1.25B']
+                        -for(let i = 0;i < titles.length;i++)
+                            li.info
+                                .info__details
+                                    .info__badge.badge.badge--small
+                                    .info__detail
+                                        h3.info__title= `Total ${titles[i]}`
+                                        h5.info__total= `${totals[i]}K New ${titles[i]}`
+                                .info__totals.totals
+                                    h3.totals__number= totalNumbers[i]                            
+                // updates section end
+                // covid Symptoms section
+                section.covid
+                    .covid__img
+                        img(src="./images/covid19.png" alt='covid 19 image')
+                    .covid__symptoms.symptoms
+                        h2.symptoms__title Symptoms of Covid-19
+                        p.symptoms__details Read carefully the symptoms of
+                        p.symptoms__details Corona Virus (Covid-19)
+                        button.covid__btn.btn.btn--more Read More
+                        ul.dots
+                            -for(let i = 0;i < 3;i++)
+                                li.dot
+
+
+                // covid Symptoms section end
+
+
+

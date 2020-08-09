@@ -1,0 +1,512 @@
+/*=============================================================*/
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;700&family=Rubik:wght@300;400;700&display=swap");
+/*=============================================================*/
+// variables
+//-----------------------------------------
+// Colors
+$heading-color: #475f7b;
+$sub-heading-color: #727e8c;
+$primary-color: #5a8dee;
+$success-color: #317613;
+$light-green: #d2ffe8;
+$light-pink: #ffdede;
+$light-blue: #e2ecff;
+$green-shade: #ccf5f8;
+$badge-colors: #d2ffe8 #ffdede #e2ecff #ccf5f8;
+$border-color: #c7cfd6;
+//----------------------------------------
+// Fonts
+$font-base: 10px;
+$rubik-font: "Rubik", sans-serif;
+$IBM-plex-font: "IBM Plex Sans", sans-serif;
+//--------------------------------------------
+// Mixins
+@mixin font($size: 1.6rem, $family: $rubik-font, $weight: 400) {
+  font: {
+    size: $size;
+    family: $family;
+    weight: $weight;
+  }
+}
+@mixin flex($dir: row, $jc, $ai) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $jc;
+  align-items: $ai;
+}
+/*=============================================================*/
+/* General Styling*/
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: $font-base;
+}
+ul,
+li,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+button {
+  outline: none;
+}
+/*=============================================================*/
+/* helper Classes */
+.btn {
+  background-color: $primary-color;
+  border: none;
+  color: #fff;
+  @include font(1.6rem, $IBM-plex-font);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px 0 rgba($primary-color, 0.5);
+  border-radius: 3%;
+  &:hover {
+    cursor: pointer;
+  }
+  &--off {
+    background-color: $light-blue;
+    color: $primary-color;
+    box-shadow: none;
+  }
+  &--more {
+    border-radius: 100rem;
+    padding: 1rem 2.5rem;
+  }
+}
+.thin {
+  font-weight: 300;
+}
+.submit {
+  font-weight: 700;
+}
+.badge {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  &--small {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+/*=============================================================*/
+/* Dashboard */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  height: 100%;
+  &__sidebar,
+  &__main {
+    background-color: #eee;
+  }
+  &__sidebar {
+    height: 100%;
+    border-right: 2px solid $border-color;
+  }
+  &__main {
+    height: 100%;
+    padding: 4rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 36rem);
+    grid-gap: 2rem;
+    > section {
+      background-color: #fff;
+      border-radius: 1%;
+      box-shadow: 0 0 1rem 0 rgba($heading-color, 0.15);
+      &.covid {
+        border-radius: 4%;
+      }
+    }
+  }
+}
+/*=============================================================*/
+/* sidebar */
+.sidebar {
+  padding: 3rem 2rem 0;
+  &__link {
+    display: flex;
+    align-items: center;
+  }
+  /*sidebar link*/
+  .link {
+    &__icon {
+      width: 2rem;
+      height: 2rem;
+    }
+    &__title {
+      @include font();
+      color: $heading-color;
+      margin-left: 0.5rem;
+    }
+  }
+}
+/*=============================================================*/
+/* Main Dashboard Section*/
+/*=============================================================*/
+/* achievement */
+.achievement {
+  padding: 2rem;
+  &__title {
+    color: $heading-color;
+    @include font(2.2rem);
+  }
+  &__subtitle {
+    color: $sub-heading-color;
+    @include font(1.6rem, $IBM-plex-font, 300);
+    margin-bottom: 3rem;
+  }
+  &__body {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__btn {
+    margin-top: 1rem;
+  }
+  &__price {
+    color: $primary-color;
+    @include font(4.5rem, $rubik-font, 700);
+    margin-bottom: 1rem;
+  }
+  &__content {
+    color: $sub-heading-color;
+    @include font(1.6rem, $IBM-plex-font);
+  }
+}
+/* Achievement Section style end*/
+/*=============================================================*/
+/* Pending Request Style*/
+.request {
+  padding: 2rem;
+  &__title,
+  &__subtitle {
+    color: $heading-color;
+  }
+  &__title {
+    @include font(1.8rem);
+    margin-bottom: 2rem;
+  }
+  &__subtitle {
+    @include font(2.2rem, $rubik-font, 300);
+    margin-bottom: 1rem;
+    &:last-of-type {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+  &__submit,
+  &__status {
+    @include font(1.4rem);
+    color: $heading-color;
+  }
+  &__status {
+    .status--green {
+      color: $success-color;
+      margin-left: 0.5rem;
+    }
+  }
+}
+/* Pending Request Style end*/
+/*=============================================================*/
+/*Notification section*/
+.dashboard__main .notifications {
+  @include flex(column, space-between, flex-start);
+  background-color: transparent;
+}
+.new {
+  width: 100%;
+  @include flex(row, space-between, flex-start);
+  > div {
+    background-color: #fff;
+    width: calc((100% - 2rem) / 2);
+  }
+  .title {
+    @include font(1.6rem, $IBM-plex-font);
+    color: $sub-heading-color;
+    margin: 1.5rem 0;
+  }
+  .count {
+    @include font(2.6rem, $rubik-font, 700);
+    color: $heading-color;
+  }
+  &__product,
+  &__user {
+    @include flex(column, flex-start, center);
+    padding: 2rem 0 1rem;
+    .badge {
+      background-color: $light-green;
+    }
+  }
+  &__user {
+    .badge {
+      background-color: $light-pink;
+    }
+  }
+}
+.chart {
+  background-color: #fff;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  &__heading {
+    @include flex(row, space-between, center);
+    margin-bottom: 1.5rem;
+  }
+  .heading {
+    &__title {
+      @include font(1.8rem, $rubik-font);
+      color: $heading-color;
+    }
+    &__subtitle {
+      @include font(1.5rem, $IBM-plex-font);
+      color: $sub-heading-color;
+    }
+  }
+  &__numbers {
+    @include flex(row, space-between, center);
+    .number {
+      @include font(1.2rem, $IBM-plex-font, 700);
+      color: $sub-heading-color;
+    }
+  }
+}
+/*Notification section end*/
+/*=============================================================*/
+/* Summary Section Style*/
+.summary {
+  grid-column: 1 / 3;
+  @include flex(row, flex-start, flex-start);
+  .history {
+    &__heading {
+      margin-bottom: 4rem;
+      @include flex(row, space-between, center);
+      padding: 1rem 2rem 0;
+    }
+  }
+  .heading {
+    &__title {
+      @include font(1.8rem);
+      color: $heading-color;
+    }
+  }
+  .actions {
+    &__btn {
+      &:first-child {
+        margin-right: 1rem;
+      }
+    }
+  }
+  .chart {
+    padding: 0;
+    img {
+      width: 100%;
+    }
+    &__chars {
+      width: 100%;
+      padding: 0 2rem;
+      @include flex(row, space-between, center);
+      margin-top: -1rem;
+      padding-bottom: 1rem;
+      .char {
+        @include font(1.2rem, $IBM-plex-font, 700);
+        color: $sub-heading-color;
+      }
+    }
+  }
+  &__sales {
+    padding: 1rem 0 0;
+    border-left: 1px solid $border-color;
+    height: 100%;
+    flex: 1;
+  }
+  .sales {
+    &__heading {
+      @include font(1.8rem);
+      color: $heading-color;
+      padding-left: 2rem;
+    }
+    &__info {
+      width: 100%;
+      height: 60%;
+      padding: 2rem;
+      @include flex(column, space-around, flex-start);
+    }
+    &__total {
+      height: 40%;
+      padding: 1rem 2rem;
+      @include flex(column, flex-start, flex-start);
+      border-top: 1px solid $border-color;
+    }
+  }
+  .info {
+    width: 100%;
+    @include flex(row, space-between, center);
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    &__price {
+      @include font(1.5rem);
+      color: $heading-color;
+    }
+    &__items {
+      @include flex(column, flex-start, flex-start);
+      @include font(1.5rem, $IBM-plex-font);
+      color: $sub-heading-color;
+      .item:first-child {
+        font-weight: 700;
+      }
+      .item:last-child {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .total {
+    &__title {
+      @include font(1.8rem);
+      color: $heading-color;
+      margin-bottom: 1rem;
+    }
+    &__number {
+      @include font(1.5rem, $IBM-plex-font, 700);
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+    }
+    &__slider {
+      width: 100%;
+      height: 4px;
+      position: relative;
+      background-color: $light-blue;
+      &::before {
+        border-radius: 100px;
+        position: absolute;
+        content: "";
+        display: block;
+        width: 82.5%;
+        height: 100%;
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+/* Summary Section Style End*/
+/*=============================================================*/
+/* Updates Section Style */
+.updates {
+  padding: 1rem;
+  margin-top: 1.5rem;
+  height: 105%;
+  &__heading {
+    @include flex(row, space-between, center);
+  }
+  .heading {
+    &__title {
+      @include font(1.8rem);
+      color: $heading-color;
+    }
+    &__options {
+      width: 9rem;
+      height: 3rem;
+      border: 1px solid $border-color;
+      color: $sub-heading-color;
+      .option {
+        @include font(1.5rem, $IBM-plex-font);
+      }
+    }
+  }
+  &__info {
+    @include flex(column, space-around, flex-start);
+    height: 100%;
+    padding-bottom: 2rem;
+  }
+  .info {
+    width: 100%;
+    @include flex(row, space-between, center);
+    @each $color in $badge-colors {
+      $i: index($badge-colors, $color);
+
+      &:nth-child(#{$i}) {
+        .badge {
+          background-color: $color;
+        }
+      }
+    }
+    &__details {
+      @include flex(row, flex-start, center);
+    }
+    &__detail {
+      margin-left: 1.5rem;
+    }
+    &__title {
+      @include font(1.5rem, $IBM-plex-font, 700);
+      color: $sub-heading-color;
+    }
+    &__total {
+      @include font(1.2rem, $IBM-plex-font);
+      color: lighten($sub-heading-color, 5%);
+    }
+    .totals {
+      &__number {
+        @include font(1.8rem, $IBM-plex-font);
+        color: $sub-heading-color;
+      }
+    }
+  }
+}
+/* Updates Section Style */
+/*=============================================================*/
+/* Covid Section Style*/
+.covid {
+  @include flex(row, flex-start, center);
+  width: 150%;
+  &__symptoms {
+    @include flex(column, space-around, flex-start);
+  }
+  &__btn {
+    @include font(1.7rem, $IBM-plex-font, 700);
+    margin-top: 2rem;
+  }
+  .symptoms {
+    &__title {
+      @include font(2.3rem, $rubik-font, 700);
+      color: $heading-color;
+      margin-bottom: 2rem;
+    }
+    &__details {
+      @include font(1.7rem, $rubik-font);
+      color: $sub-heading-color;
+    }
+    .dots {
+      @include flex(row, flex-start, flex-start);
+      align-self: flex-end;
+      margin-top: 6rem;
+    }
+    .dot {
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      background-color: $sub-heading-color;
+      &:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+      &:first-child {
+        background-color: $heading-color;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+/* Covid Section Style End*/
+/*=============================================================*/
