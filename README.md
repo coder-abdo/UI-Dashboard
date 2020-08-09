@@ -30,3 +30,14 @@ or
 ```
 yarn
 ```
+
+---
+
+> to run the app
+
+```
+parcel src/index.pug
+```
+
+> to view it in the browser
+> `localhost:1234`
